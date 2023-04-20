@@ -63,12 +63,16 @@ public class App
                     // Slide 9 - recieve message
                     msgReceived = dis.readUTF();
 
-                    if(msgReceived.equals("get-cookie")) {
+                    if(msgReceived.equalsIgnoreCase("get-cookie")) {
                         // get a random cookie
                         String randomCookie = cookie.getRandomCookie();
 
                         // send the random cookie out using DataOutputStream (dos.writeUTF(XXXXX))
                         dos.writeUTF(randomCookie);
+                        dos.flush();
+                    } else {
+                        dos.writeUTF("");
+                        dos.flush();
                     }
                 }
                 // closes all output stream in reverse order
